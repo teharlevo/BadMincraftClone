@@ -93,26 +93,55 @@ public class BadMincraftClone extends Scene{
     }
 
     private void Controler(){
+        boolean cange = false;
+        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
+        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
+            if(i%10 == 4){
+                vertex[i] = 1.0f;
+            }
+            if(i%10 == 5){
+                vertex[i] = 1.0f;
+            }
+        }
         if(Input.getKeyPressNow("right")){
             posX ++;
+            cange = true;
         }
         if(Input.getKeyPressNow("left")){
             posX --;
+            cange = true;
         }
         if(Input.getKeyPressNow("up")){
             posY ++;
+            cange = true;
         }
 
         if(Input.getKeyPressNow("down")){
             posY --;
+            cange = true;
         }
         if(Input.getKeyPressNow("n")){
             posZ --;
+            cange = true;
         }
         if(Input.getKeyPressNow("m")){
             posZ ++;
+            cange = true;
         }
+        if(!cange){return;}
         lineCube.setPos(posX, posY, posZ);
+
+        posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
+        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
+            
+            if(i%10 == 5){
+                vertex[i] = 0.0f;
+            }
+            if(i%10 == 4){
+                vertex[i] = 0.0f;
+            }
+        }
+        m.setVertices(vertex);
     }
 
     private void camControler(float dt){
