@@ -24,7 +24,7 @@ public class BadMincraftClone extends Scene{
     private int posY = 0;
     private int posZ = 0;
 
-    private int bloackNum = 1;
+    private int bloackNum = 6;
 
     private Mash m;
     private float[] vertex;
@@ -50,16 +50,30 @@ public class BadMincraftClone extends Scene{
         brder.setModelShape(ModelShape.Lines);
         g.addComponent(brder);
 
+        bloackNum = 0;
         for (int x = 0; x < sizeX; x++) {
             posX = x;
             for (int z = 0; z < sizeZ; z++) {
                 posZ = z;
-                for (int y = 0; y < 5; y++) {
+                for (int y = 0; y < 3; y++) {
+                    posY = y;
+                    placeBlack();
+
+                }
+            }
+        }
+        bloackNum = 1;
+        for (int x = 0; x < sizeX; x++) {
+            posX = x;
+            for (int z = 0; z < sizeZ; z++) {
+                posZ = z;
+                for (int y = 3; y < 4; y++) {
                     posY = y;
                     placeBlack();
                 }
             }
         }
+        tallPos();
 
         cam.setPos(sizeX * 2,sizeY * 2, sizeZ * 2);
         cam.setAngle(-45, -45, 0);
@@ -73,6 +87,7 @@ public class BadMincraftClone extends Scene{
 
         if(Input.getKeyPressNow("k")){
             placeBlack();
+            tallPos();
         }
     }
 
@@ -94,7 +109,6 @@ public class BadMincraftClone extends Scene{
             }
         }
         m.setVertices(vertex);
-        System.out.println("x:" + posX + " y:" + posY + " z:" + posZ);
     }
 
     private void Controler(){
@@ -134,9 +148,13 @@ public class BadMincraftClone extends Scene{
             cange = true;
         }
         if(!cange){return;}
+        tallPos();
+    }
+
+    private void tallPos(){
         lineCube.setPos(posX, posY, posZ);
 
-        posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
+        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
         for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
             
             if(i%10 == 5){
