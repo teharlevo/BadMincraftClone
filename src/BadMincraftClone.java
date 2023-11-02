@@ -24,6 +24,8 @@ public class BadMincraftClone extends Scene{
     private int posY = 0;
     private int posZ = 0;
 
+    private int bloackNum = 1;
+
     private Mash m;
     private float[] vertex;
 
@@ -86,6 +88,9 @@ public class BadMincraftClone extends Scene{
             }
             if(i%10 == 2){
                 vertex[i] += posZ;
+            }
+            if(i%10 == 8){
+                vertex[i] += bloackNum * VertexsieFile.texHight();
             }
         }
         m.setVertices(vertex);

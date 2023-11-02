@@ -1,47 +1,51 @@
 
 public class VertexsieFile {
+
+    private static float texWuth =  1.0f/3.0f;
+    private static float texHight = 1.0f/7.0f;
+
     private static float[] cubeVertex = new float[]{
-        -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-         0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-         0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-         0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
+         0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,     0.0f,0.0f,
+         0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+         0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+        -0.5f,  0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1, texHight,0.0f,
+        -0.5f, -0.5f,  0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
 
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-         0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-         0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-         0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
+         0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,     0.0f,0.0f,
+         0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+         0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+        -0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1, texHight,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
 
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-         0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-         0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-         0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f,        0.0f,0.0f,
+         0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth,     0.0f,0.0f,
+         0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth, texHight,0.0f,
+         0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth, texHight,0.0f,
+        -0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f,    texHight,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f,        0.0f,0.0f,
 
-        -0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-         0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-         0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-         0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        -0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        -0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,        0.0f,0.0f,
+         0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*3,     0.0f,0.0f,
+         0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*3, texHight,0.0f,
+         0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*3, texHight,0.0f,
+        -0.5f, 0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,    texHight,0.0f,
+        -0.5f, 0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,        0.0f,0.0f,
         
-        0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-        0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-        0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*1,     0.0f,0.0f,
+        0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*2,     0.0f,0.0f,
+        0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*2, texHight,0.0f,
+        0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*2, texHight,0.0f,
+        0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*1, texHight,0.0f,
+        0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f, texWuth*1,     0.0f,0.0f,
 
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
-        -0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 0.0f,0.0f,
-        -0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  1.0f, 1.0f,0.0f,
-        -0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 1.0f,0.0f,
-        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  0.0f, 0.0f,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
+        -0.5f, -0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2,     0.0f,0.0f,
+        -0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+        -0.5f,  0.5f,   0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*2, texHight,0.0f,
+        -0.5f,  0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1, texHight,0.0f,
+        -0.5f, -0.5f,  -0.5f, 1.0f,1.0f,1.0f,1.0f,  texWuth*1,     0.0f,0.0f,
     };
 
     private static float[] cubeLineVertex = new float[]{
@@ -88,5 +92,9 @@ public class VertexsieFile {
 
     public static float[] cubeLineVertex(){
         return cubeLineVertex;
+    }
+
+    public static float texHight(){
+        return texHight;
     }
 }
