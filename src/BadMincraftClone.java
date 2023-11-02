@@ -33,16 +33,16 @@ public class BadMincraftClone extends Scene{
     public void init() {
         Entity g = new Entity();
         vertex = new float[sizeX * sizeY * sizeZ * VertexsieFile.cubeVertex().length];
-        m = new Mash(vertex, "dirt");
+        m = new Mash(vertex, "tileMap");
         
         g.addComponent(new Model(m, 0, 0, 0));
 
         g = new Entity();
-        lineCube = new Model(new Mash(VertexsieFile.cubeLineVertex(), "dirt"), 0,0,0);
+        lineCube = new Model(new Mash(VertexsieFile.cubeLineVertex(), "tileMap"), 0,0,0);
         lineCube.setModelShape(ModelShape.Lines);
         g.addComponent(lineCube);
         g = new Entity();
-        Model brder = new Model(new Mash(VertexsieFile.cubeLineVertex(), "dirt")
+        Model brder = new Model(new Mash(VertexsieFile.cubeLineVertex(), "tileMap")
         , sizeX/2.0f - 0.5f,sizeY/2.0f - 0.5f,sizeZ/2.0f - 0.5f);
         brder.setScale(sizeX,sizeY,sizeZ);
         brder.setModelShape(ModelShape.Lines);
@@ -103,28 +103,28 @@ public class BadMincraftClone extends Scene{
                 vertex[i] = 1.0f;
             }
         }
-        if(Input.getKeyPressNow("right")){
+        if(Input.getKeyPressNow("right") && posX != sizeX - 1){
             posX ++;
             cange = true;
         }
-        if(Input.getKeyPressNow("left")){
+        if(Input.getKeyPressNow("left") && posX != 0){
             posX --;
             cange = true;
         }
-        if(Input.getKeyPressNow("up")){
+        if(Input.getKeyPressNow("up")&& posY != sizeY - 1){
             posY ++;
             cange = true;
         }
 
-        if(Input.getKeyPressNow("down")){
+        if(Input.getKeyPressNow("down") && posY != 0){
             posY --;
             cange = true;
         }
-        if(Input.getKeyPressNow("n")){
+        if(Input.getKeyPressNow("n") && posZ != 0){
             posZ --;
             cange = true;
         }
-        if(Input.getKeyPressNow("m")){
+        if(Input.getKeyPressNow("m")&& posZ != sizeZ - 1){
             posZ ++;
             cange = true;
         }
