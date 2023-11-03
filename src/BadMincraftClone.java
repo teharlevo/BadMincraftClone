@@ -89,6 +89,10 @@ public class BadMincraftClone extends Scene{
             placeBlack();
             tallPos();
         }
+        if(Input.getKeyPressNow("t")){
+            killBlock();
+            tallPos();
+        }
     }
 
     private void placeBlack(){
@@ -247,6 +251,13 @@ public class BadMincraftClone extends Scene{
                 cam.setAngle(-45, -45, 0);
                 cam.setOrtho(20);
             }
+        }
+    }
+
+    private void killBlock(){
+        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
+        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
+            vertex[i] = 0;
         }
     }
 
