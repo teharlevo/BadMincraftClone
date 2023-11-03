@@ -7,6 +7,7 @@ import main.*;
 import modeling.Mash;
 import modeling.Model;
 import modeling.ModelShape;
+import modeling.TextMash;
 
 public class BadMincraftClone extends Scene{
 
@@ -31,6 +32,12 @@ public class BadMincraftClone extends Scene{
     private float[] vertex;
 
     private Model lineCube;
+
+    private String[] blockNames = new String[]{"dirt","grass","wood","cobblestone","brick wall","leaves","stone"};
+
+    private Entity UIMaster;
+    private TextMash posText;
+    private TextMash blockText;
 
     public void init() {
         Entity g = new Entity();
@@ -78,12 +85,30 @@ public class BadMincraftClone extends Scene{
         cam.setPos(sizeX * 2,sizeY * 2, sizeZ * 2);
         cam.setAngle(-45, -45, 0);
         cam.setOrtho(20);
+
+        UIMaster = new Entity();
+        posText = new TextMash("x:" + posX + " y:" + posY + "z:" + posZ, "arial");
+        float x = 8.0f;
+        float y = -5.0f;
+        Model uiModel = new Model(posText.getMash(),-y * 0.5f,-x,y * 0.5f);
+        uiModel.setScale(7,7,7);
+        uiModel.setAngle(0, 45, 0);
+        UIMaster.addComponent(uiModel);
+
+        blockText = new TextMash(blockNames[bloackNum],"arial");
+        x = 9.0f;
+        y = -5.0f;
+        uiModel = new Model(blockText.getMash(),-y * 0.5f,-x,y * 0.5f);
+        uiModel.setScale(7,7,7);
+        uiModel.setAngle(0, 45, 0);
+        UIMaster.addComponent(uiModel);
         
     }
     
     public void update(float dt) {
         camControler(dt);
         Controler();
+        updateUI();
 
         if(Input.getKeyPressNow("o")){
             placeBlack();
@@ -219,6 +244,7 @@ public class BadMincraftClone extends Scene{
             angleX = ((float)Input.getMousePosY() / (float)Window.height() - 0.5f) * -180.0f;
             angleY = ((float)Input.getMousePosX() / (float)Window.width() - 0.5f) * 360.0f;
             cam.setAngle(angleX,angleY,cam.getAngleZ());
+
         }
         else{
             float x = 0;
@@ -238,6 +264,7 @@ public class BadMincraftClone extends Scene{
                 y += speed;
             }
             cam.getPos().add(new Vector3f(y * dt*0.5f,x * dt,-y * dt*0.5f));
+            UIMaster.pos = new Vector3f(cam.getPos().x,cam.getPos().y,cam.getPos().z);
         }
 
         if(Input.getKeyPressNow("r")){
@@ -259,6 +286,11 @@ public class BadMincraftClone extends Scene{
         for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
             vertex[i] = 0;
         }
+    }
+
+    private void updateUI(){
+        posText.cangeText("x:" + posX + " y:" + posY + "z:" + posZ);
+        blockText.cangeText(blockNames[bloackNum]);
     }
 
 }
