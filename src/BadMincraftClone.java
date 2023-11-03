@@ -24,7 +24,7 @@ public class BadMincraftClone extends Scene{
     private int posY = 0;
     private int posZ = 0;
 
-    private int bloackNum = 6;
+    private int bloackNum = 0;
 
     private Mash m;
     private float[] vertex;
@@ -193,20 +193,21 @@ public class BadMincraftClone extends Scene{
             float angleX = 0;
             float angleY = 0;
 
-            if(Input.getKeyPress("q")){
-                angleX += 90.0f;
-            }
-            if(Input.getKeyPress("e")){
-                angleX -= 90.0f;
-            }
-            if(Input.getKeyPress("z")){
-                angleY -= 90.0f;
-            }
-            if(Input.getKeyPress("x")){
-                angleY += 90.0f;
-            }
-
-            cam.setAngle(cam.getAngleX() + angleX * dt, cam.getAngleY() + angleY * dt,cam.getAngleZ());
+            //if(Input.getKeyPress("q")){
+            //    angleX += 90.0f;
+            //}
+            //if(Input.getKeyPress("e")){
+            //    angleX -= 90.0f;
+            //}
+            //if(Input.getKeyPress("z")){
+            //    angleY -= 90.0f;
+            //}
+            //if(Input.getKeyPress("x")){
+            //    angleY += 90.0f;
+            //}
+            angleX = ((float)Input.getMousePosY() / (float)Window.height() - 0.5f) * -180.0f;
+            angleY = ((float)Input.getMousePosX() / (float)Window.width() - 0.5f) * 360.0f;
+            cam.setAngle(angleX,angleY,cam.getAngleZ());
         }
         else{
             float x = 0;
