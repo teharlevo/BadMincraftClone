@@ -25,12 +25,12 @@ public class BadMincraftClone extends Scene{
     private int posZ = 0;
 
     private int bloackNum = 0;
+    private int bloacksNum = (int)(1.0f/VertexsieFile.texHight());
 
     private Mash m;
     private float[] vertex;
 
     private Model lineCube;
-    
 
     public void init() {
         Entity g = new Entity();
@@ -85,7 +85,7 @@ public class BadMincraftClone extends Scene{
         camControler(dt);
         Controler();
 
-        if(Input.getKeyPressNow("k")){
+        if(Input.getKeyPressNow("o")){
             placeBlack();
             tallPos();
         }
@@ -122,31 +122,38 @@ public class BadMincraftClone extends Scene{
                 vertex[i] = 1.0f;
             }
         }
-        if(Input.getKeyPressNow("right") && posX != sizeX - 1){
+        if(Input.getKeyPressNow("k") && posX != sizeX - 1){
             posX ++;
             cange = true;
         }
-        if(Input.getKeyPressNow("left") && posX != 0){
+        if(Input.getKeyPressNow("h") && posX != 0){
             posX --;
             cange = true;
         }
-        if(Input.getKeyPressNow("up")&& posY != sizeY - 1){
+        if(Input.getKeyPressNow("u")&& posY != sizeY - 1){
             posY ++;
             cange = true;
         }
 
-        if(Input.getKeyPressNow("down") && posY != 0){
+        if(Input.getKeyPressNow("j") && posY != 0){
             posY --;
             cange = true;
         }
-        if(Input.getKeyPressNow("n") && posZ != 0){
+        if(Input.getKeyPressNow("i") && posZ != 0){
             posZ --;
             cange = true;
         }
-        if(Input.getKeyPressNow("m")&& posZ != sizeZ - 1){
+        if(Input.getKeyPressNow("y")&& posZ != sizeZ - 1){
             posZ ++;
             cange = true;
         }
+
+        for (int i = 0; i < bloacksNum; i++) {
+            if(Input.getKeyPressNow(String.valueOf(i + 1))){
+                bloackNum = i;
+            }
+        }
+
         if(!cange){return;}
         tallPos();
     }
