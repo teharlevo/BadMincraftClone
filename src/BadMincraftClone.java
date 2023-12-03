@@ -8,6 +8,7 @@ import modeling.Mash;
 import modeling.Model;
 import modeling.ModelShape;
 import modeling.TextMash;
+import render.Renderer;
 
 public class BadMincraftClone extends Scene{
 
@@ -17,9 +18,9 @@ public class BadMincraftClone extends Scene{
         new Window(920,720,"mincraft");
     }
 
-    private int sizeX = 30;
+    private int sizeX = 70;
     private int sizeY = 30;
-    private int sizeZ = 30;
+    private int sizeZ = 70;
 
     private int posX = 0;
     private int posY = 0;
@@ -29,7 +30,7 @@ public class BadMincraftClone extends Scene{
     private int bloacksNum = (int)(1.0f/VertexsieFile.texHight());
 
     private Mash m;
-    private float[] vertex;
+    private float[] inceceArray;
 
     private Model lineCube;
 
@@ -39,22 +40,28 @@ public class BadMincraftClone extends Scene{
     private TextMash posText;
     private TextMash blockText;
 
+    private Renderer blackRenderer;
+
     public void init() {
+        blackRenderer = new Renderer("blockRenderr", cam,new int[]{3,2,0,1});
+
+        blackRenderer.getRIH().setIntsNames(new String[]{"sizeX","sizeY","sizeZ"});
+        blackRenderer.getRIH().setInts(new int[]{sizeX,sizeY,sizeZ});
+
         Entity g = new Entity();
-        vertex = new float[sizeX * sizeY * sizeZ * VertexsieFile.cubeVertex().length];
-        m = new Mash(vertex, "tileMap");
-        
-        g.addComponent(new Model(m, 0, 0, 0));
+        m = new Mash(VertexsieFile.cubeVertex(), "tileMap");
+        inceceArray = new float[sizeX * sizeY * sizeZ];
+        g.addComponent(new Model(m, 0, 0, 0,blackRenderer,inceceArray));
 
         g = new Entity();
         lineCube = new Model(new Mash(VertexsieFile.cubeLineVertex(), "tileMap"), 0,0,0);
-        lineCube.setModelShape(ModelShape.Lines);
+        lineCube.getMash().setModelShape(ModelShape.Lines);
         g.addComponent(lineCube);
         g = new Entity();
         Model brder = new Model(new Mash(VertexsieFile.cubeLineVertex(), "tileMap")
         , sizeX/2.0f - 0.5f,sizeY/2.0f - 0.5f,sizeZ/2.0f - 0.5f);
         brder.setScale(sizeX,sizeY,sizeZ);
-        brder.setModelShape(ModelShape.Lines);
+        brder.getMash().setModelShape(ModelShape.Lines);
         g.addComponent(brder);
 
         bloackNum = 0;
@@ -82,7 +89,7 @@ public class BadMincraftClone extends Scene{
         }
         tallPos();
 
-        cam.setPos(sizeX * 2,sizeY * 2, sizeZ * 2);
+        cam.setPos(sizeX,sizeY * 2, sizeZ);
         cam.setAngle(-45, -45, 0);
         cam.setOrtho(20);
 
@@ -118,39 +125,22 @@ public class BadMincraftClone extends Scene{
             killBlock();
             tallPos();
         }
+        render();
+        blackRenderer.render();
     }
 
     private void placeBlack(){
-        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
-        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
-            vertex[i] = VertexsieFile.cubeVertex()[i%VertexsieFile.cubeVertex().length];
-            if(i%10 == 0){
-                vertex[i] += posX;
-            }
-            if(i%10 == 1){
-                vertex[i] += posY;
-            }
-            if(i%10 == 2){
-                vertex[i] += posZ;
-            }
-            if(i%10 == 8){
-                vertex[i] += bloackNum * VertexsieFile.texHight();
-            }
-        }
-        m.setVertices(vertex);
+        int posAdd = posZ + posX * sizeZ + posY * sizeX * sizeZ;
+        
+        inceceArray[posAdd] = bloackNum + 1;
     }
 
     private void Controler(){
         boolean cange = false;
-        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
-        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
-            if(i%10 == 4){
-                vertex[i] = 1.0f;
-            }
-            if(i%10 == 5){
-                vertex[i] = 1.0f;
-            }
-        }
+        int posAdd = posZ + posX * sizeZ + posY * sizeX * sizeZ;
+
+
+        
         if(Input.getKeyPressNow("k") && posX != sizeX - 1){
             posX ++;
             cange = true;
@@ -191,16 +181,16 @@ public class BadMincraftClone extends Scene{
         lineCube.setPos(posX, posY, posZ);
 
         int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
-        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
-            
-            if(i%10 == 5){
-                vertex[i] = 0.0f;
-            }
-            if(i%10 == 4){
-                vertex[i] = 0.0f;
-            }
-        }
-        m.setVertices(vertex);
+        //for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
+        //    
+        //    if(i%10 == 5){
+        //        vertex[i] = 0.0f;
+        //    }
+        //    if(i%10 == 4){
+        //        vertex[i] = 0.0f;
+        //    }
+        //}
+        //m.setVertices(vertex);
     }
 
     private void camControler(float dt){
@@ -274,7 +264,7 @@ public class BadMincraftClone extends Scene{
                 cam.setPerspective();
             }
             else{
-                cam.setPos(sizeX * 2,sizeY * 2, sizeZ * 2);
+                cam.setPos(sizeX,sizeY * 2, sizeZ);
                 cam.setAngle(-45, -45, 0);
                 cam.setOrtho(20);
             }
@@ -282,10 +272,9 @@ public class BadMincraftClone extends Scene{
     }
 
     private void killBlock(){
-        int posAdd = (posX + posY * sizeX + posZ * sizeX * sizeY) * VertexsieFile.cubeVertex().length;
-        for (int i = posAdd; i < VertexsieFile.cubeVertex().length + posAdd; i++) {
-            vertex[i] = 0;
-        }
+        int posAdd = posZ + posX * sizeZ + posY * sizeX * sizeZ;
+        
+        inceceArray[posAdd] = 0;
     }
 
     private void updateUI(){
